@@ -6,10 +6,10 @@ pipeline{
         nodeHome = tool 'nodejs1' 
         PATH = "$dockerHome/bin:$nodeHome/bin:$PATH"
     }
-    // options{
-    //     timestamps()
-    //     timeout(time:1, unit: 'HOURS')
-    // }
+    options{
+        timestamps()
+        timeout(time:10, unit: 'MINUTE')
+    }
     stages{
         stage('Checkout'){
             steps {
