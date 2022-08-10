@@ -1,15 +1,35 @@
 pipeline{
     agent any
+    environment{
+        scannerHome = tool 'Sonarscanner_net'
+        dockerHome = tool 'myDocker' 
+        nodeHome = tool 'nodejs1' 
+        PATH = "$dockerHome/bin:$nodeHome/bin:$PATH"
+    }
+    // options{
+    //     timestamps()
+    //     timeout(time:1, unit: 'HOURS')
+    // }
     stages{
-        stage('Build'){
+        stage('Checkout'){
             steps {
-                 echo 'Build'
+                  echo 'Starting code check out'
+                  git branch: 'main', url: 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
+                  echo 'Code check out Finished'
             }
            
         }
-        stage('Test'){
+        stage('Build'){
             steps {
-                 echo 'Test'
+                 echo 'Building'
+                 sh 'npm i'
+            }
+        }
+
+        stage('test'){
+            steps {
+                 echo 'test'
+                 sh 'npm test'
             }
         }
          stage('Integration Test'){
