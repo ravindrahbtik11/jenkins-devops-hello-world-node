@@ -11,8 +11,8 @@ pipeline{
         stage('Checkout'){
             steps {
                   echo 'Starting code check out'
-                  // git credentialsId: 'GithubAcc', url: 'https://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@github.com/ravindrahbtik11/', branch: 'jenkins-devops-hello-world-node.git'
-                  git 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
+                  git branch: 'jenkins-devops-hello-world-node.git', url: 'https://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@github.com/ravindrahbtik11/'
+                  //git 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
                   echo 'Code check out Finished'
             }
         }
