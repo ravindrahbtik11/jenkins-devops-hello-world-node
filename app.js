@@ -1,45 +1,41 @@
-// const logger = require('./logger');
-// logger.log('message');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-// const path = require('path');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-// console.log(path.parse(__filename));
-// const os = require('os');
-// const free = os.freemem();
-// const totalMem = os.totalmem();
-// // console.log('Total Memmor ' + totalMem);
+var app = express();
 
-// console.log(`Total Memmory: ${totalMem}` );
-// console.log(`Free Memmory: ${free}` );
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// const fs = require('fs');
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// // const file = fs.readdirSync('./');
-// // console.log(file);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
-// fs.readdir('./', function(err, file){
-//     if(err) console.log('Error ', err)
-//     else console.log('Result ', file)
-// })
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
-// const EventEmitter = require('events');
-// const emitter =new EventEmitter();
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// // Register a listener
-// emitter.on('MessageLogged', function(arg){
-//     console.log('Listener is called ', arg);
-// });
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
-// // Register a listener
-// emitter.on('MessageLogged', (arg) =>{
-//     console.log('Listener is called ', arg);
-// });
-
-
-// // Raise an events
-// emitter.emit('MessageLogged', {id: 1, url:'http:/'}) // Making a noise or signling or raise a events.
-
-
-const person = require('./person.js');
-var person1 = new person('James', 'Bond');
-console.log(`Full Name: ${person1.fullName()}`);
+module.exports = app;
