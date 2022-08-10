@@ -5,6 +5,11 @@ pipeline{
         dockerHome = tool 'myDocker' 
         nodeHome = tool 'nodejs1' 
         PATH = "$dockerHome/bin:$nodeHome/bin:$PATH"
+         mavenHome = tool 'MyMaven' 
+    }
+    tools{
+        nodejs:'nodejs1'
+        dockerTool 'myDocker'
     }
     options{
         timestamps()
@@ -17,7 +22,6 @@ pipeline{
                   git branch: 'main', url: 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
                   echo 'Code check out Finished'
             }
-           
         }
         stage('Build'){
             steps {
