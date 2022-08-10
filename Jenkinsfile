@@ -7,14 +7,6 @@ pipeline{
         PATH = "$dockerHome/bin:$nodeHome/bin:$PATH"
         mavenHome = tool 'MyMaven' 
     }
-    // tools{
-    //     nodejs:'nodejs1'
-    //     dockerTool 'mydocker'
-    // }
-    // options{
-    //     timestamps()
-    //     timeout(time:10, unit: 'HOURS')
-    // }
     stages{
         stage('Checkout'){
             steps {
