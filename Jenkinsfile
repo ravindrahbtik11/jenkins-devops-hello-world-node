@@ -11,7 +11,7 @@ pipeline{
         stage('Checkout'){
             steps {
                   echo 'Starting code check out'
-                  git branch: 'jenkins-devops-hello-world-node', url: 'https://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@github.com/ravindrahbtik11/'
+                  git branch: 'main', url: 'https://github.com/ravindrahbtik11/jenkins-devops-hello-world-node'
                   //git 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
                   echo 'Code check out Finished'
             }
