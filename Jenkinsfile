@@ -2,14 +2,14 @@ pipeline{
     agent any
     environment{
         scannerHome = tool 'Sonarscanner_net'
-        dockerHome = tool 'myDocker' 
+        dockerHome = tool 'mydocker' 
         nodeHome = tool 'nodejs1' 
         PATH = "$dockerHome/bin:$nodeHome/bin:$PATH"
          mavenHome = tool 'MyMaven' 
     }
     tools{
         nodejs:'nodejs1'
-        dockerTool 'myDocker'
+        dockerTool 'mydocker'
     }
     options{
         timestamps()
