@@ -16,14 +16,14 @@ pipeline{
     //     timeout(time:10, unit: 'HOURS')
     // }
     stages{
-        stage('Checkout'){
-            steps {
-                  echo 'Starting code check out'
-                   git credentialsId: 'GithubAcc', url: 'https://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@github.com/ravindrahbtik11/', branch: 'jenkins-devops-hello-world-node.git'
-                //   git 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
-                  echo 'Code check out Finished'
-            }
-        }
+        // stage('Checkout'){
+        //     steps {
+        //           echo 'Starting code check out'
+        //            git credentialsId: 'GithubAcc', url: 'https://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@github.com/ravindrahbtik11/', branch: 'jenkins-devops-hello-world-node.git'
+        //         //   git 'https://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@github.com/ravindrahbtik11/jenkins-devops-hello-world-node.git'
+        //           echo 'Code check out Finished'
+        //     }
+        // }
         stage('Build'){
             steps {
                  echo 'Building'
